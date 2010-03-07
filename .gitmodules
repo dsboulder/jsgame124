@@ -1,3 +1,0 @@
-[submodule "paperboy"]
-	path = paperboy
-	url = git@github.com:cantino/node-paperboy.git
