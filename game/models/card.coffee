@@ -1,2 +1,1 @@
-class Card
-	
+class Card	
