@@ -1,1 +1,4 @@
 .idea/
+/game/models/*.js
+/game/models/*/*.js
+/game/models/*/*/*.js
