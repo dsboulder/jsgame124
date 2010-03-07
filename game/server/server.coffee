@@ -1,36 +1,43 @@
+Game:     {}
 sys:      require "sys"
 http:     require "http"
 fs:       require "fs"
 path:     require "path"
 url:      require "url"
-game_mgr: require "./game_manager"
 faye:     require('../../faye/faye')
 WEBROOT:  path.join(path.dirname(__filename), "..")
-                      
-process.mixin(GLOBAL, game_mgr)
 
 includeJs: (path) ->
   filename: WEBROOT + path + ".js"
   sys.puts("Requiring " + filename)
   fileData: fs.readFileSync(filename)
-  process.compile(fileData, filename)
+  eval(fileData)
+#  process.compile(fileData, filename)
 
 
+#eval(fs.readFileSync("../lib/uuid.js"))
+#eval(fs.readFileSync("../lib/json2.js"))
+#eval(fs.readFileSync("../models/base.js"))
+#eval(fs.readFileSync("../models/game.js"))
+#eval(fs.readFileSync("./game_manager.js"))
 eval(fs.readFileSync("../includes.js"))
 includeJs("/server/game_manager")
 
 fayeServer: new faye.NodeAdapter {mount: '/faye', timeout: 45}
+gameManager: new Game.GameManager()
 
 server: http.createServer (req, res) ->
   sys.puts("request: " + req.url)
   return if fayeServer.call(req, res)
+  
   if req.url == '/games' and req.method.toLowerCase() == "post"
-    newGame: GameManager.create
-    json: Object.toJSON(newGame)
+    newGame: gameManager.createGame()
+    json: JSON.stringify(newGame)
     res.sendHeader(200, {'Content-Type': 'application/json', 'Content-Length': json.length})
     res.write(json)
     res.close()
     return
+
   static_filename: path.join(WEBROOT, url.parse(req.url).pathname)
   fs.stat static_filename, (err, stat) ->
     if err

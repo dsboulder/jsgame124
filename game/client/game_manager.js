@@ -19,7 +19,7 @@ GameManager = {
       dataType: "json",
       success: function(gameJSON) {
         console.debug("Created", gameJSON);
-        GameManager.currentGame = new Game(gameJSON);
+        GameManager.currentGame = new Game.Game(gameJSON);
       }
     });
   }

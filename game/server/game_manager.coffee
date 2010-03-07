@@ -1,7 +1,7 @@
-class GameManager
+class Game.GameManager
   games: []
 
-  create: ->
-    newGame: new Game({id: Math.uuid()})
+  createGame: ->
+    newGame: new Game.Game({id: Math.uuid()})
     GameManager.games.push newGame
     newGame

@@ -1,4 +1,5 @@
-//var exports = {};
+var Game = {};
+
 var NodeEmulator = {
   requires: []
 }
