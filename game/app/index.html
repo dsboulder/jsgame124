@@ -1,0 +1,20 @@
+<html>
+<head>
+  <script type="text/javascript" src="/client/jquery.js"></script>
+  <script type="text/javascript" src="/client/node_js_emulator.js"></script>
+  <script type="text/javascript" src="/client/faye-client-min.js"></script>
+  <script type="text/javascript" src="/client/game_manager.js"></script>
+  <script type="text/javascript" src="/includes.js"></script>
+</head>
+<body>
+  <a id="create_game" href="javascript: GameManager.create();">Create game.</a>
+  <script type="text/javascript">
+    window.fayeClient = new Faye.Client('/faye');
+    GameManager.setUsername("david");
+//    fayeClient.subscribe('/game/1', function(message) {
+//      console.debug("/game/1", message);
+//    });
+//    fayeClient.publish('/game/1', "")
+  </script>  
+</body>
+</html>

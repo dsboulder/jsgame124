@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="../ext/Test/TAP.js"></script>
+<script type="text/javascript" src="../ext/Test/TAP/Class.js"></script>
+<script type="text/javascript" src="../ext/json2.js"></script>
+
+<!--[if IE]>
+<script type="text/javascript" src="../lib/Joose.js"></script>
+<![endif]-->
+
+<style type="text/css">
+.test {
+    margin-top : 10px;
+    margin-bottom : 10px;
+    border : 3px;
+    border-style : inset;
+    overflow : auto;
+}
+
+.small { 
+    height : 20px;
+}
+
+.big {
+    height : 600px;
+}
+
+.fail { background-color : red; }
+.pass { background-color : green; }
+
+</style>
+</head>
+<body>
+
+<h1>Joose Browser Test Harness</h1>
+<p>Click a test box to view results <a href="javascript:window.testRunner.run()">(run)</a></p>
+<script type="text/javascript">
+    var top = this;
+    /** Configuration options
+    *
+    */
+    var tests = [
+        '00_test_test.t.js',
+        '01_sanity.t.js',
+        '02_classcreation.t.js',
+        '03_methods.t.js',
+        '04_inheritance.t.js',
+        '05_metaclass.t.js',
+        '06_basic_examples.t.js',
+        '06_detach.t.js',
+        '07_roles.t.js',
+        '08_joosify.t.js',
+        '09_js_style_building.t.js',
+        '10_method_wrappers.t.js',
+        '11_gears.t.js',
+        '12_storage.t.js',            
+        '12_storage_jsonpickle.t.js', 
+        '13_attribute_meta_classes.t.js',
+        '14_modules.t.js',
+        '15_prototype.t.js',
+        '16_types.t.js',
+        '17_meta_serialization.t.js',
+        '18_custom_builders.t.js',
+        //'19_exceptions.t.js'          // still to implement
+        '20_singleton.t.js',
+        '21_method_signatures.t.js',
+        '22_multi_method.t.js'
+        ];
+    
+    var testlib = '.';
+    var results = [];
+    
+    /** Setup
+    *
+    */
+
+	function loadScriptFile(src) {
+		document.write("<script type='text/javascript' src='"+src+"'><"+"/script>\n")
+	}
+
+	var loc     = new String(location.hash);
+	if(loc.indexOf("libmode=single") != -1) {
+	    loadScriptFile("../joose.js")
+	}
+	else if(loc.indexOf("libmode=mini") != -1) {
+	    loadScriptFile("../joose.mini.js")
+	}
+	else {
+		var html  = '<script type="text/javascript" src="../lib/Joose.js"><'+'/script>';
+		    html += '<script type="text/javascript">joose.loadComponents("../lib")<'+'/script>';
+		document.write(html)
+	}
+   
+    
+</script>
+<script type="text/javascript" src="../ext/Test/RealWorld.js"></script>
+<script type="text/javascript" src="../ext/Test/TAPBrowser.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+     window.testRunner = new Test.TAPBrowser(".", tests)
+    //window.testRunner.run()
+}
+</script>
+</body>
+</html>
