@@ -2,3 +2,5 @@
 /game/models/*.js
 /game/models/*/*.js
 /game/models/*/*/*.js
+/game/server/*.js
+/game/server/*/*.js
