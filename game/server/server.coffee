@@ -19,17 +19,18 @@ includeJs: (path) ->
 eval(fs.readFileSync("../includes.js"))
 includeJs("/server/game_manager")
 
-server: new faye.NodeAdapter {mount: '/faye', timeout: 45}
+fayeServer: new faye.NodeAdapter {mount: '/faye', timeout: 45}
 
 server: http.createServer (req, res) ->
-  sys.puts("request")
-  return if server.call(req, res)
+  sys.puts("request: " + req.url)
+  return if fayeServer.call(req, res)
   if req.url == '/games' and req.method.toLowerCase() == "post"
     newGame: GameManager.create
     json: Object.toJSON(newGame)
     res.sendHeader(200, {'Content-Type': 'application/json', 'Content-Length': json.length})
     res.write(json)
     res.close()
+    return
   paperboy
     .deliver(WEBROOT, req, res)
     .before ->
