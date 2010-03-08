@@ -1,0 +1,13 @@
+path: require "path"
+fs: require "fs"
+sys: require "sys"
+require.paths.push(path.join("..", "jasmine", "contrib", "node"))
+
+
+
+task 'test', 'run jasmine specs', ->
+    jasmine: require "jasmine-node"
+
+    jasmine.include("spec/test_spec.js")
+    jasmine.getEnv().execute();
+
