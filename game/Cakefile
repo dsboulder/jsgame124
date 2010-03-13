@@ -6,9 +6,8 @@ require.paths.push(path.join("..", "jasmine", "contrib", "node"))
 
 
 task 'test', 'run jasmine specs', ->
+    GLOBAL.Game: {}
     jasmine: require "jasmine-node"
-
-    jasmine.include("spec/test_spec.js")
-    jasmineEnv: jasmine.getEnv()
-    jasmineEnv.reporter: new jasmine.NodeReporter()
-    jasmineEnv.execute()
+    jasmine.includeAll("server/classes/*.js")
+    jasmine.runDefaultNodeSpecs()
+    

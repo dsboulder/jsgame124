@@ -21,7 +21,7 @@ includeJs: (path) ->
 #eval(fs.readFileSync("../models/game.js"))
 #eval(fs.readFileSync("./game_manager.js"))
 eval(fs.readFileSync("../includes.js"))
-includeJs("/server/game_manager")
+includeJs("/server/classes/game_manager")
 
 fayeServer: new faye.NodeAdapter {mount: '/faye', timeout: 45}
 gameManager: new Game.GameManager()
