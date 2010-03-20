@@ -1,9 +1,8 @@
 describe "GameManager", ->
   beforeEach ->
-    @gameManager: new Game.GameManager()
-    
+    @gameManager: new GameNS.GameManager()
+
   describe "#createGame", ->
     it "should assign a UUID", ->
       game: @gameManager.createGame();
-      sys.puts game.id
-      expect(game).id.length.toBeGreaterThan(10)
+      expect(game.id.length).toBeGreaterThan(10)

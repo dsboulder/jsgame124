@@ -1,0 +1,1 @@
+GameNS.Cards = {} unless GameNS.Cards

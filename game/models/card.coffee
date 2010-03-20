@@ -1,3 +1,3 @@
-class Card
+class GameNS.Card
   x: ->
     4

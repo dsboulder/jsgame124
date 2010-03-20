@@ -4,3 +4,6 @@
 /game/models/*/*/*.js
 /game/server/*.js
 /game/server/*/*.js
+/game/spec/server/*.js
+/game/spec/models/*.js
+/game/spec/models/*/*.js

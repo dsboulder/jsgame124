@@ -1,0 +1,2 @@
+describe "CompiledCard", ->
+  describe "#constructor", ->

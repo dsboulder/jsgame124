@@ -1,7 +1,7 @@
-class Game.GameManager
+class GameNS.GameManager
   games: []
 
   createGame: ->
-    newGame: new Game.Game({id: Math.uuid()})
-    GameManager.games.push newGame
+    newGame: new GameNS.Game({id: Math.uuid()})
+    @games.push newGame
     newGame

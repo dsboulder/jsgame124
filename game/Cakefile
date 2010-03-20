@@ -6,8 +6,30 @@ require.paths.push(path.join("..", "jasmine", "contrib", "node"))
 
 
 task 'test', 'run jasmine specs', ->
-    GLOBAL.Game: {}
-    jasmine: require "jasmine-node"
-    jasmine.includeAll("server/classes/*.js")
-    jasmine.runDefaultNodeSpecs()
-    
+  includeJs: (path) ->
+    filename: "." + path + ".js"
+    sys.puts("Requiring " + filename)
+    fileData: fs.readFileSync(filename)
+    # fileData: "function testotron(includeJs) { "+fileData+" }"
+    # process.compile(fileData, filename)
+    # testotron.apply(GLOBAL, [includeJs])
+    eval(fileData)
+
+  GLOBAL.GameNS: {}
+  includeJs "/includes"
+  jasmine: require "jasmine-node"
+  jasmine.includeAll("server/classes/*.js", GLOBAL)
+  jasmine.runDefaultNodeSpecs()
+
+
+task 'console', 'interactive shell', ->
+  includeJs: (path) ->
+    filename: "." + path + ".js"
+    sys.puts("Requiring " + filename)
+    fileData: fs.readFileSync(filename)
+    eval(fileData)
+
+  GLOBAL.GameNS: {}
+  includeJs "/includes"
+  repl: require "repl"
+  repl.start(">")
